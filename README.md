@@ -1,55 +1,47 @@
-# Media ABAC Application
+# Media-ABAC
 
-Publishing platform with fine-grained ABAC authorization
+Industry-specific ABAC authorization system.
 
 ## Features
 
-- Fine-grained ABAC authorization
-- Multiple user roles: Writers, Editors, Publishers, Contributors, Moderators, Subscribers
-- Resource management: Articles, Comments, Media Assets, Analytics
-- Complete authorization decision logging
-- REST API for all operations
-- Policy mining support
+- **Roles**: writer, editor, publisher, subscriber
+- **Resource**: Article
+- **Actions**: create_article, edit_article, publish, unpublish
+- **Authorization Rules**: 10+ fine-grained rules
+- **Decision Logging**: Complete audit trail for policy mining
 
-## Running Locally
+## Running
 
 ```bash
-# Install dependencies
 pip install -r requirements.txt
-
-# Run the application
 python app/main.py
 ```
 
-The API will be available at `http://localhost:5060`
+Server runs on port 5060.
 
 ## API Endpoints
 
-- `POST /api/users` - Create user
-- `GET /api/users/:id` - Get user
-- `POST /api/accounts` - Create resource
-- `GET /api/accounts/:id` - Get resource
-- `POST /api/transactions` - Execute action
-- `GET /api/decisions` - Query decision logs
-- `GET /api/decisions/statistics` - Get statistics
-- `GET /api/decisions/export` - Export logs
-- `GET /api/schema` - Get attribute schemas
-- `GET /health` - Health check
+- POST /api/users - Create user
+- GET /api/users/:id - Get user
+- POST /api/accounts - Create resource
+- POST /api/transactions - Execute action
+- GET /api/decisions - Query decision logs
+- GET /api/decisions/export - Export for policy mining
+- GET /api/schema - Get attribute schemas
+
+## Authorization Rules
+
+1. Basic role-based access
+2. Senior level privileges
+3. Resource owner access
+4. Location-based access
+5. Clearance level requirements
+6. After-hours restrictions
+7. Cross-location restrictions
+8. Inactive resource blocks
+9. Junior level limitations
+10. High sensitivity controls
 
 ## For Policy Mining
 
-Access authorization decision logs at:
-- `GET /api/decisions` - All decisions with full context
-- `GET /api/decisions/export` - JSON export for analysis
-
-## Deployment
-
-Deploy to Heroku:
-```bash
-heroku create your-app-name
-git push heroku main
-```
-
-## License
-
-MIT
+Access decision logs at `/api/decisions` with full attribute context.
